@@ -1,0 +1,5 @@
+biodegradable
+error_result
+hazardous
+nonbiodegradable
+recyclable
