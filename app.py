@@ -32,9 +32,10 @@ labels = load_labels()  # put this outside the route for performance
 
 def preprocess_image(image_bytes):
     img = Image.open(io.BytesIO(image_bytes)).convert('RGB')
-    img = img.resize((224, 224))  # depends on your model's expected size
-    img_array = np.array(img, dtype=np.float32) / 255.0
-    img_array = np.expand_dims(img_array, axis=0)  # batch dimension
+    img = img.resize((224, 224))  # Keep this
+    img_array = np.array(img, dtype=np.float32)
+    img_array = (img_array / 127.5) - 1.0  # Normalize to [-1, 1]
+    img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
     return img_array
 
 
